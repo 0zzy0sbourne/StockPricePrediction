@@ -2,9 +2,9 @@
 <br/>
 <br/>
 # Summary 
-<br />
+<br/>
 Predicting the further prices of some well-known Crypto Currencies (Bitcoin, Ethereum, Tether, Ripple, Bitcoin Cash) using Machine Learning algorithms like  Polynomial Regression and also visualizing the data in our FLASK REST API and deploying it to Heroku.
-<br /> 
+<br/> 
 # Used Tools 
-<br /> 
+<br/> 
 Numpy, Scikit-learn, Pandas, Flask...
