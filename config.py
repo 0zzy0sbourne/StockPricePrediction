@@ -1,5 +1,5 @@
 DATABASE = { 
-    'OWNER' : 'OZAN' , 
+    'HOST' : 'OZAN' , 
     'PASSWORD' : '172320' , 
     'DATABASE' : 'COINAPP'
 

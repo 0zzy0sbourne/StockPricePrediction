@@ -40,12 +40,12 @@ def plotSaveData(df , coinName ) :  # not for ethereum .
     plt.ylabel('Prices')
     figs.append(fig1)
     if coinName == "Bitcoin" :
-        plt.savefig('/home/ozan/Desktop/Git/python/venv/application/bitcoinPriceFig.png')
+        plt.savefig('bitcoinPriceFig.png')
     elif coinName == "Tether" :
-        plt.savefig('/home/ozan/Desktop/Git/python/venv/application/tetherPriceFig.png')
+        plt.savefig('tetherPriceFig.png')
    
     elif coinName == "Ripple": 
-        plt.savefig('/home/ozan/Desktop/Git/python/venv/application/ripplePriceFig.png')
+        plt.savefig('ripplePriceFig.png')
    
     plt.close(fig1)
 
@@ -71,12 +71,12 @@ def plotSaveData(df , coinName ) :  # not for ethereum .
     plt.legend(loc ='best')
     figs.append(fig2)
     if coinName == "Bitcoin" :
-       plt.savefig('/home/ozan/Desktop/Git/python/venv/application/bitcoinVolumeFig.png')
+       plt.savefig('bitcoinVolumeFig.png')
     elif coinName == "Tether" :
-       plt.savefig('/home/ozan/Desktop/Git/python/venv/application/tetherVolumeFig.png')
+       plt.savefig('tetherVolumeFig.png')
    
     elif coinName == "Ripple": 
-       plt.savefig('/home/ozan/Desktop/Git/python/venv/application/rippleVolumeFig.png')
+       plt.savefig('rippleVolumeFig.png')
     
     plt.close(fig2)
     return figs 
@@ -95,7 +95,7 @@ def plotEthereum(df):
     plt.xlabel('Time')
     plt.ylabel('Price & MaketCap')
     plt.legend(loc='best')
-    plt.savefig('/home/ozan/Desktop/Git/python/venv/application/Ethereum.png')
+    plt.savefig('Ethereum.png')
     plt.close(fig)
     
 

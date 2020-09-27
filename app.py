@@ -5,7 +5,7 @@ import sys
 import random
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine ,MetaData
 import config
 import matplotlib.pyplot as plt
 import ml 
@@ -28,11 +28,42 @@ app = Flask(__name__ , static_url_path='/static')
 # tell flask app where our database will be stored : 
 
 app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:////tmp/test.db'
-db = SQLAlchemy(app)
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 300 
+app.config['SQLALCHEMY_ECHO'] = True # If set to True SQLAlchemy will log all the statements issued to stderr which can be useful for debugging.
+app.config['SQLALCHEMY_POOL_TIMEOUT'] =  10 # Specifies the connection timeout in seconds for the pool.
+convention = { # put the metadata conventions here .  
 
-class Coin(db.Model): 
+}
+metadata = MetaData(naming_convention = convention)
+db = SQLAlchemy(app ,metadata = metadata)
+
+class Coin(db.Model): # can save the infos about the coins like png's 
+    __tablename__  = 'coins'
     id = db.Column(db.Integer , primary_key = True)
-    coinName = db.Column(db.String(20)  , primary_key= False)
+    coinName = db.Column(db.String(20)  , primary_key= False , nullable = False )
+
+class Member(db.Model): 
+    __tablename__ = "member"
+    id = db.Column(db.Integer , primary_key = True)
+    name = db.Column(db.String(20) , primary_key = False   , nullable = False )
+    email= db.relationship("Address"  , backref = 'member' , lazy = True)
+    def __repr__(self): 
+        return  '<Member %r>' % self.name
+
+class Comment(db.Model): 
+    __tablename__ = "comments"
+    id = db.Column(db.Integer, primary_key = True)
+    content= db.Column(db.String(140)  , primary_key = False)
+    author = db.relationship("Member" , backref = 'comments' , lazy=True) 
+    
+class Address(db.Model): 
+    __tablename__ = "address"
+    email = db.Column(db.String(30) , primary_key =True , nullable = False)
+    person_id = db.Column(db.Integer,db.ForeignKey('member.id') , nullable = False)
+    def __init__(self , email , person_id): 
+        self.email = email 
+        self.person_id = person_id
+
 
 
 
